@@ -1,51 +1,51 @@
 # pytorch-retinanet
 
-![img3](https://github.com/yhenon/pytorch-retinanet/blob/master/images/3.jpg)
-![img5](https://github.com/yhenon/pytorch-retinanet/blob/master/images/5.jpg)
+Pytorch implementation of RetinaNet object detection as described in [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002) by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
+This is a modification for Windows/Pytorch1.X on the basis of [yhenon/pytorch-retinanet](https://github.com/yhenon/pytorch-retinanet), which is for Linux/PyTorch0.4.
+Our GPU implementation of NMS follows [amberblade/gpu_nms_windows](https://github.com/amberblade/gpu_nms_windows).
 
-Pytorch  implementation of RetinaNet object detection as described in [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002) by Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and Piotr Dollár.
+The installation has been successfully performed in the following environments:
 
-This implementation is primarily designed to be easy to read and simple to modify.
+`Win7 cuda9.0 anaconda3 pytorch3.7 pytorch1.0/1.1 vs2015`
 
-## Results
-Currently, this repo achieves 33.7% mAP at 600px resolution with a Resnet-50 backbone. The published result is 34.0% mAP. The difference is likely due to the use of Adam optimizer instead of SGD with weight decay.
-
-## Installation
+## Windows Installation
 
 1) Clone this repo
 
-2) Install the required packages:
-
 ```
-apt-get install tk-dev python-tk
+git clone https://github.com/hzli-ucas/pytorch-retinanet.git
 ```
 
-3) Install the python packages:
+2) Install the python packages with Anaconda:
 	
 ```
-pip install cffi
+conda install cffi
 
-pip install pandas
+conda install pandas
 
-pip install pycocotools
+conda install cython
 
-pip install cython
+conda install opencv
 
-pip install opencv-python
+conda install requests
 
-pip install requests
+pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
+
+conda install matplotlib
+
+conda install scikit-image
 
 ```
 
-4) Build the NMS extension.
+3) Build the NMS extension.
 
 ```
 cd pytorch-retinanet/lib
-bash build.sh
+build.cmd
 cd ../
 ```
 
-Note that you may have to edit line 14 of `build.sh` if you want to change which version of python you are building the extension for.
+Note that you may have to edit line 2-8 of `build.cmd` according to your CUDA/VisualStudio version.
 
 ## Training
 
